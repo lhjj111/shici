@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>小学古诗·背学练</title>
+<meta name="description" content="统编版小学1-6年级古诗背诵与考点练习">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏮</text></svg>">
+<style>
+:root{
+  --amber:#f59e0b; --amber-d:#d97706; --teal:#0d9488; --red:#ef4444; --green:#22c55e;
+  --ink:#333; --ink-l:#666; --bg:#fff7ed; --card:#fff; --line:#f5e6d0;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);padding-bottom:76px}
+.wrap{max-width:680px;margin:0 auto;padding:14px 14px 20px}
+h1{font-size:1.35rem;display:flex;align-items:center;gap:.45rem}
+.sub{color:var(--ink-l);font-size:.85rem;margin-top:2px}
+.card{background:var(--card);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:12px;padding:11px 16px;font-size:1rem;cursor:pointer;color:#fff;background:var(--amber);transition:transform .08s}
+.btn:active{transform:scale(.97)}
+.btn.teal{background:var(--teal)} .btn.green{background:var(--green)} .btn.ghost{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+.btn.red{background:var(--red)} .btn.lg{width:100%;padding:14px;font-size:1.08rem;border-radius:14px}
+.chip{display:inline-block;background:#fff3d6;color:#a16207;border-radius:999px;padding:2px 10px;font-size:.78rem;margin:2px}
+.chip.lk{background:#e6fffa;color:var(--teal)}
+header{background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:0 0 22px 22px;padding:16px 16px 20px;color:#fff}
+header .sub{color:#fff8e8}
+.hero{background:linear-gradient(135deg,#ffedd5,#fef3c7);border:1.5px dashed var(--amber);border-radius:16px;padding:14px;margin-bottom:12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;z-index:50}
+nav a{flex:1;text-align:center;padding:8px 0 9px;font-size:.72rem;color:var(--ink-l);text-decoration:none}
+nav a b{display:block;font-size:1.25rem;line-height:1.25}
+nav a.on{color:var(--amber-d);font-weight:700}
+.poem-line{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:1.12rem;line-height:1.7;text-align:center;letter-spacing:.03em;cursor:pointer;min-height:2.9rem;display:flex;align-items:center;justify-content:center}
+.poem-line.hidden{color:transparent;text-shadow:0 0 10px rgba(51,51,51,.55);background:#fdf2e0}
+.poem-line .hidebar{color:transparent;text-shadow:0 0 8px rgba(51,51,51,.5)}
+.meta{font-size:.9rem;color:var(--ink-l);text-align:center;margin-bottom:10px}
+.box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;font-size:.88rem;color:var(--ink)}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;font-size:1rem;cursor:pointer;line-height:1.6}
+.opt:active{transform:scale(.99)}
+.opt.ok{border-color:var(--green);background:#f0fdf4}
+.opt.no{border-color:var(--red);background:#fef2f2}
+.opt.waiting:hover{border-color:var(--amber)}
+.inp{width:100%;border:2px solid var(--line);border-radius:12px;padding:12px;font-size:1.15rem;text-align:center;letter-spacing:.35em}
+.q-title{font-size:1.1rem;font-weight:700;margin-bottom:6px}
+.q-hint{font-size:.85rem;color:var(--ink-l);margin-bottom:10px}
+.answer-line{font-size:1.2rem;line-height:2;letter-spacing:.04em;margin:6px 0}
+.feedback{margin:10px 0;padding:12px;border-radius:12px;font-size:.95rem}
+.feedback.good{background:#f0fdf4;border:1px solid #bbf7d0}
+.feedback.bad{background:#fef2f2;border:1px solid #fecaca}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.spread{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.badge{font-size:.7rem;background:#ffe4e6;color:#e11d48;border-radius:999px;padding:1px 8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cat-btn{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 10px;text-align:center;cursor:pointer;font-size:.95rem}
+.cat-btn:active{transform:scale(.97)}
+.cat-btn .em{font-size:1.5rem;display:block;margin-bottom:4px}
+.cat-btn .n{font-size:.75rem;color:var(--ink-l)}
+.progbar{height:14px;background:#ffe4c4;border-radius:999px;overflow:hidden;margin:8px 0}
+.progbar i{display:block;height:100%;background:linear-gradient(90deg,#34d399,#0d9488);border-radius:999px;transition:width .3s}
+.tab-list{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.tab{font-size:.85rem;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);background:#fff;cursor:pointer;color:var(--ink-l)}
+.tab.on{background:var(--amber);border-color:var(--amber);color:#fff;font-weight:600}
+.search{width:100%;border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-size:1rem;margin-bottom:10px}
+.wrong-item{font-size:.88rem;margin-bottom:4px}
+.stat{text-align:center;padding:6px}
+.stat b{display:block;font-size:1.4rem;color:var(--amber-d)}
+.stat span{font-size:.75rem;color:var(--ink-l)}
+.lk{color:var(--teal);font-weight:600}
+.empty{text-align:center;color:var(--ink-l);padding:30px 0;font-size:.95rem}
+footer{text-align:center;color:#b08a5e;font-size:.75rem;margin-top:16px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap" style="padding-top:0;padding-bottom:0">
+    <h1>🏮 小学古诗·背学练</h1>
+    <div class="sub">统编版 1—6 年级 · 101 首 · 考点分类 · 在线背诵与闯关</div>
+  </div>
+</header>
+
+<div class="wrap" id="view"></div>
+
+<nav id="nav">
+  <a href="#home" data-t="home"><b>🏠</b>首页</a>
+  <a href="#cat" data-t="cat"><b>📚</b>篇目</a>
+  <a href="#practice" data-t="practice"><b>🎯</b>闯关</a>
+  <a href="#wrong" data-t="wrong"><b>📋</b>错题</a>
+  <a href="#progress" data-t="progress"><b>📊</b>进度</a>
+</nav>
+
+<script src="poems.js"></script>
+<script>
+'use strict';
+const P = window.POEMS;
+const CATS = ['爱国报国','忧国忧民','田园山水','思乡思亲','送别友情','豁达乐观','咏物言志','惜时劝学','节日风俗','童趣闲适'];
+const CAT_EMOJI = {爱国报国:'🏯',忧国忧民:'🤝',田园山水:'🌄',思乡思亲:'🌙',送别友情:'👋',豁达乐观:'☀️',咏物言志:'🌸',惜时劝学:'⏰',节日风俗:'🏮',童趣闲适:'🪁'};
+const CAT_NAME = {爱国报国:'爱国报国',忧国忧民:'忧国忧民',田园山水:'田园山水',思乡思亲:'思乡思亲',送别友情:'送别友情',豁达乐观:'豁达乐观',咏物言志:'咏物言志·哲理',惜时劝学:'惜时劝学',节日风俗:'节日风俗',童趣闲适:'童趣闲适'};
+
+const $ = (s,el=document)=>el.querySelector(s);
+const store = {
+  get(){ try{ return JSON.parse(localStorage.getItem('sicData')||'{}'); }catch(e){ return {}; } },
+  set(v){ localStorage.setItem('sicData', JSON.stringify(v)); }
+};
+const prog = store.get();
+prog.poems = prog.poems || {};
+prog.wrong = prog.wrong || [];
+prog.score = prog.score || {played:0, right:0};
+function save(){ store.set(prog); }
+
+function poemByTitle(t){ return P.find(p=>p.t===t); }
+function pStat(t){ return prog.poems[t] || {be:0, qr:0, qw:0}; }
+function markBe(t, v){ const s = pStat(t); s.be = v; prog.poems[t]=s; save(); }
+function markQ(t, ok){ const s = pStat(t); if(ok) s.qr++; else s.qw++; prog.poems[t]=s; save(); }
+
+function shuff(a){ const r=[...a]; for(let i=r.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [r[i],r[j]]=[r[j],r[i]]; } return r; }
+function pick(arr, n, exclude){ let pool = arr.filter(x=>x!==exclude); pool = shuff(pool); return pool.slice(0,n); }
+
+/* ---------- 路由 ---------- */
+let view = 'home';
+function go(h){ location.hash = h; }
+function route(){
+  let h = (location.hash||'#home').slice(1);
+  const m = h.split('?')[0];
+  if(m==='home') view='home', renderHome();
+  else if(m==='cat') view='cat', renderCat();
+  else if(m==='poem'){ view='poem'; renderPoem(parseQuery(h).t); }
+  else if(m==='practice'){ view='practice'; renderPractice(); }
+  else if(m==='wrong'){ view='wrong'; renderWrong(); }
+  else if(m==='progress'){ view='progress'; renderProgress(); }
+  updateNav();
+  window.scrollTo(0,0);
+}
+function parseQuery(h){ const q={}; const i=h.indexOf('?'); if(i>=0) h.slice(i+1).split('&').forEach(kv=>{ const [k,v]=kv.split('='); q[decodeURIComponent(k)]=decodeURIComponent(v||''); }); return q; }
+function updateNav(){ document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on', a.dataset.t===view)); }
+window.addEventListener('hashchange', route);
+route();
+
+/* ---------- 首页 ---------- */
+function renderHome(){
+  const done = P.filter(p=>pStat(p.t).be).length;
+  const pct = Math.round(done/P.length*100);
+  const catChips = CATS.map(c=>`<button class="cat-btn" onclick="go('#cat?c=${encodeURIComponent(c)}')"><span class="em">${CAT_EMOJI[c]}</span>${CAT_NAME[c]}<span class="n">（${P.filter(p=>p.c===c).length}首）</span></button>`).join('');
+  $('#view').innerHTML = `
+    <div class="hero">
+      <div class="spread"><span>📖 我的背诵进度</span><span class="chip">已背 ${done}/${P.length}</span></div>
+      <div class="progbar"><i style="width:${pct}%"></i></div>
+      <div class="row">
+        <button class="btn teal lg" style="flex:1" onclick="go('#practice?m=1')">🎯 开始闯关</button>
+        <button class="btn green lg" style="flex:1" onclick="go('#poem?t='+encodeURIComponent(randomPoem()))">🎲 随机一首</button>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:10px">
+      <input class="search" id="q" placeholder="🔍 搜索古诗名或作者，如：静夜思 / 李白" oninput="doSearch(this.value)">
+      <div id="searchOut"></div>
+    </div>
+    <div class="grid2" style="grid-template-columns:1fr 1fr 1fr">${catChips}</div>
+    <div class="card" style="margin-top:12px">
+      <div class="q-title">💡 闯关模式</div>
+      <div style="font-size:.9rem;color:var(--ink-l);line-height:1.7">
+        ① <b>补名句</b>：给上句，选下句<br>
+        ② <b>考考点</b>：这首诗表达了什么感情？<br>
+        ③ <b>看字默写</b>：诗中缺了哪个字？<br>
+        错题会自动收进「错题本」，可以反复重练。
+      </div>
+    </div>
+    <footer>📖 数据来自统编版教材 · 祝背诵顺利！</footer>`;
+  const q=$('#q'); if(q) q.focus();
+}
+function randomPoem(){ return P[Math.floor(Math.random()*P.length)].t; }
+function doSearch(v){
+  const out = $('#searchOut'); if(!out) return;
+  v = v.trim();
+  if(!v){ out.innerHTML=''; return; }
+  const hits = P.filter(p=>p.t.includes(v)||p.a.includes(v)).slice(0,8);
+  out.innerHTML = hits.length ? hits.map(p=>`<button class="opt" onclick="go('#poem?t=${encodeURIComponent(p.t)}')">《${p.t}》${p.a}·${p.d} <span class="chip">${CAT_NAME[p.c]}</span></button>`).join('') : `<div class="empty">没有找到“${v}”，换个词试试～</div>`;
+}
+
+/* ---------- 篇目列表 ---------- */
+function renderCat(){
+  const q = parseQuery(location.hash);
+  let cur = q.c || '';
+  const tabs = `<button class="tab ${cur===''?'on':''}" onclick="go('#cat')">全部</button>` +
+    CATS.map(c=>`<button class="tab ${cur===c?'on':''}" onclick="go('#cat?c=${encodeURIComponent(c)}')">${CAT_EMOJI[c]}${CAT_NAME[c]}</button>`).join('');
+  let list = cur ? P.filter(p=>p.c===cur) : P;
+  const cards = list.map(p=>{
+    const s = pStat(p.t);
+    return `<button class="opt waiting" onclick="go('#poem?t=${encodeURIComponent(p.t)}')">
+      <div class="spread"><span><b>《${p.t}》</b> ${p.a}·${p.d}</span>${s.be?'<span class="chip lk">✓已背</span>':''}</div>
+      <div style="font-size:.78rem;color:var(--ink-l);margin-top:4px">${p.g} ${p.tags.map(t=>CAT_NAME[t]||t).join(' / ')}</div>
+    </button>`;
+  }).join('');
+  $('#view').innerHTML = `
+    <div class="card"><div class="spread"><span class="q-title">📚 篇目列表</span><span class="chip">${list.length} 首</span></div>
+    <div class="tab-list">${tabs}</div></div>
+    ${cards||`<div class="card empty">这个分类暂时没有篇目</div>`}`;
+}
+
+/* ---------- 诗歌详情 ---------- */
+let poemHidden = true;
+function renderPoem(t){
+  const p = poemByTitle(t);
+  if(!p){ $('#view').innerHTML='<div class="card empty">找不到这首古诗</div>'; return; }
+  poemHidden = true;
+  const s = pStat(t);
+  $('#view').innerHTML = `
+    <button class="btn ghost" style="margin-bottom:10px" onclick="go('#cat')">← 返回篇目</button>
+    <div class="card">
+      <div class="q-title">《${p.t}》</div>
+      <div class="meta">（${p.d}）${p.a} · ${p.g}<br>
+        <span class="chip">${CAT_EMOJI[p.c]}${CAT_NAME[p.c]}</span>${p.tags.map(x=>`<span class="chip lk">${CAT_NAME[x]||x}</span>`).join('')}
+        ${p.note?`<span class="chip">${p.note}</span>`:''}</div>
+      <div id="lines"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn teal" style="flex:1" id="btnHide" onclick="toggleHide()">🙈 遮住，试着背</button>
+        <button class="btn green" style="flex:1" onclick="speakPoem()">🔊 朗读</button>
+      </div>
+      <div style="margin-top:8px;text-align:center;font-size:.78rem;color:var(--ink-l)" id="spkState"></div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn ${s.be?'red':'green'}" style="flex:1" onclick="beToggle()" id="beBtn">${s.be?'🔄 还没背熟':'✅ 我会背了'}</button>
+        <button class="btn ghost" style="flex:1" onclick="go('#practice?m=3&t=${encodeURIComponent(t)}')">✍️ 练默写</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="q-title">🎯 本课考点</div>
+      <div class="box">${p.k}</div>
+      ${p.w?`<div class="box" style="margin-top:8px">✏️ 默写易错字：<b>${p.w}</b></div>`:''}
+    </div>`;
+  drawLines();
+}
+function drawLines(){
+  const p = poemByTitle(parseQuery(location.hash).t);
+  const box = $('#lines');
+  box.innerHTML = p.lines.map(l=>`<div class="poem-line ${poemHidden?'hidden':''}" onclick="this.classList.remove('hidden')">${l}</div>`).join('');
+}
+function toggleHide(){
+  const p = poemByTitle(parseQuery(location.hash).t);
+  poemHidden = !poemHidden;
+  $('#btnHide').textContent = poemHidden ? '🙈 遮住，试着背' : '👀 显示全部';
+  drawLines();
+}
+function beToggle(){
+  const t = parseQuery(location.hash).t;
+  const s = pStat(t);
+  markBe(t, s.be ? 0 : 1);
+  const b = $('#beBtn');
+  b.className = 'btn ' + (s.be?'red':'green');
+  b.textContent = s.be ? '🔄 还没背熟' : '✅ 我会背了';
+}
+let speakTimer = null;
+function speakPoem(){
+  if(!window.speechSynthesis){ $('#spkState').textContent='当前浏览器不支持朗读'; return; }
+  const t = parseQuery(location.hash).t;
+  const p = poemByTitle(t);
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(p.lines.join('。'));
+  u.lang = 'zh-CN';
+  u.rate = 0.85;
+  u.onend = ()=>{ $('#spkState').textContent=''; };
+  $('#spkState').textContent='🔊 正在朗读…';
+  speechSynthesis.speak(u);
+}
+
+/* ---------- 练习 ---------- */
+const quiz = { qs:[], idx:0, right:0, scope:'all', cat:'', one:'', mode:'1', len:10, done:false };
+function renderPractice(){
+  const q = parseQuery(location.hash);
+  const m0 = q.m || quiz.mode;
+  const t0 = q.t || '';
+  quiz.one = t0;
+  const c0 = q.c || quiz.cat;
+  const scopeTabs = `<button class="tab ${quiz.one?'on':''}" onclick="go('#practice?m=${m0}&t=${quiz.one}')">单首</button>` +
+    `<button class="tab ${!quiz.one&&!c0?'on':''}" onclick="go('#practice?m=${m0}&t=')">全部</button>` +
+    CATS.map(c=>`<button class="tab ${c0===c?'on':''}" onclick="go('#practice?m=${m0}&c=${encodeURIComponent(c)}')">${CAT_NAME[c]}</button>`).join('');
+  const modeTabs = ['补名句','考考点','看字默写'].map((m,i)=>`<button class="tab ${String(i+1)===m0?'on':''}" onclick="go('#practice?m=${i+1}')">${['🅰','🅱','🅲'][i]} ${m}</button>`).join('');
+  quiz.mode = m0; quiz.cat = c0;
+  $('#view').innerHTML = `
+    <div class="card">
+      <div class="q-title">🎯 闯关练习</div>
+      <div class="tab-list">${modeTabs}</div>
+      <div style="font-size:.78rem;color:var(--ink-l);margin-bottom:4px">选择范围：</div>
+      <div class="tab-list">${scopeTabs}</div>
+      <div class="row" style="margin-top:6px">
+        <button class="btn lg" onclick="startQuiz()">🚀 开始答题（${quiz.len}题）</button>
+      </div>
+    </div>
+    <div id="qbox"></div>`;
+}
+function poolPoems(){
+  if(quiz.one) return [poemByTitle(quiz.one)].filter(Boolean);
+  if(quiz.cat) return P.filter(p=>p.c===quiz.cat);
+  return P;
+}
+function buildQuiz(){
+  const pool = poolPoems();
+  const qs = [];
+  const m = quiz.mode;
+  for(const p of shuff(pool)){
+    if(qs.length>=quiz.len) break;
+    if(m==='1'){
+      const segs = p.lines.flatMap(l=>l.split(/[，。！？；,\s]+/).filter(x=>x.length>=2));
+      if(segs.length<2) continue;
+      for(let i=0;i+1<segs.length;i++){
+        if(qs.length>=quiz.len) break;
+        qs.push({t:p.t, typ:'seg', q:segs[i], a:segs[i+1], ca:segs[i+1], poem:p});
+      }
+    }else if(m==='3'){
+      qs.push({t:p.t, typ:'type', q:'', ca:'', poem:p});
+    }else{
+      qs.push({t:p.t, typ:'k', q:'', ca:p.k, poem:p});
+    }
+  }
+  quiz.qs = qs; quiz.idx=0; quiz.right=0; quiz.done=false;
+}
+function startQuiz(){
+  buildQuiz();
+  if(!quiz.qs.length){ $('#qbox').innerHTML='<div class="card empty">这个范围没有可出的题，换个范围试试</div>'; return; }
+  quiz.done=false;
+  $('#qbox').innerHTML = '';
+  nextQ();
+}
+function nextQ(){
+  if(quiz.idx>=quiz.qs.length){ return endQuiz(); }
+  const it = quiz.qs[quiz.idx];
+  const p = it.poem;
+  const hint = `<div class="q-hint">《${p.t}》 ${p.a}·${p.d} ${p.g}</div>`;
+  if(it.typ==='seg'){
+    const others = P.flatMap(x=>x.lines.flatMap(l=>l.split(/[，。！？；,\s]+/).filter(s=>s.length>=2))).filter(s=>s!==it.a);
+    const opts = shuff([it.a, ...pick(others, 3)]).map((o,i)=>`<button class="opt waiting" onclick="checkSeg(this,'${i}')" data-i="${i}" data-ok="${o===it.a?'1':'0'}">${o}</button>`).join('');
+    $('#qbox').innerHTML = `
+      <div class="card">
+        <div class="q-title">🅰 补名句</div>${hint}
+        <div class="answer-line">${it.q} ——</div>
+        <div id="opts">${opts}</div>
+      </div>`;
+  }else if(it.typ==='k'){
+    const others = P.filter(x=>x.t!==it.t && x.k).map(x=>x.k);
+    const rightOpt = it.ca;
+    const opts = shuff([rightOpt, ...pick(others, 3)]).map((o,i)=>`<button class="opt waiting" onclick="checkK(this,'${i}')" data-i="${i}" data-ok="${o===rightOpt?'1':'0'}">${o}</button>`).join('');
+    $('#qbox').innerHTML = `
+      <div class="card">
+        <div class="q-title">🅱 考考点</div>${hint}
+        <div style="font-size:.95rem;color:var(--ink-l);margin-bottom:10px">这首诗表达了怎样的思想感情？</div>
+        <div id="opts">${opts}</div>
+      </div>`;
+  }else{
+    // 看字默写：优先从易错字里挖空
+    const full = p.lines.join('');
+    let idx = -1;
+    const wChars = (p.w||'').split(/[、，,，]/).filter(w=>w && w.length<=2);
+    for(const c of wChars){ const fi = full.indexOf(c); if(fi>=0){ idx=fi; break; } }
+    if(idx<0){ const han = [...full].filter(ch=>/[一-鿿]/.test(ch)); idx = full.indexOf(han[Math.floor(Math.random()*han.length)]); }
+    const before = full.slice(0,idx), after = full.slice(idx+1);
+    quiz._curAns = full[idx];
+    quiz._curFull = p;
+    quiz._curLineNo = null;
+    $('#qbox').innerHTML = `
+      <div class="card">
+        <div class="q-title">🅲 看字默写</div>${hint}
+        <div class="answer-line">${before}<span style="display:inline-block;min-width:2.2em;border-bottom:3px solid var(--amber);margin:0 .1em">&nbsp;</span>${after}</div>
+        <div style="font-size:.8rem;color:var(--ink-l);margin-bottom:8px">补上诗中缺的那个字（注意易错字哦）</div>
+        <input class="inp" id="ans" maxlength="2" placeholder="填字">
+        <div class="row" style="margin-top:10px">
+          <button class="btn teal" style="flex:1" onclick="checkType()">提交</button>
+          <button class="btn ghost" style="flex:1" onclick="skipQ()">跳过</button>
+        </div>
+        <div id="fb"></div>
+      </div>`;
+    setTimeout(()=>{ const i=$('#ans'); if(i) i.focus(); }, 60);
+    return;
+  }
+  renderFeed(it);
+}
+function renderFeed(it){
+  if(!it || !it.poem) return;
+}
+function finishQ(ok, feedbackHtml, it){
+  markQ(it.t, ok);
+  if(ok) quiz.right++; else addWrong(it);
+  quiz.idx++;
+  const fb = document.createElement('div');
+  fb.className = 'feedback '+(ok?'good':'bad');
+  fb.innerHTML = (ok?'✅ 答对了！':'❌ 答错了！') + feedbackHtml;
+  const cur = $('#qbox').firstElementChild;
+  if(cur) cur.appendChild(fb);
+  setTimeout(nextQ, ok?650:1700);
+}
+function checkSeg(el, i){
+  if(el.classList.contains('no')||el.classList.contains('ok')) return;
+  const it = quiz.qs[quiz.idx];
+  const ok = el.dataset.ok==='1';
+  document.querySelectorAll('#opts .opt').forEach(o=>o.disabled=true);
+  el.classList.add(ok?'ok':'no');
+  const rightEl = document.querySelector('#opts .opt[data-ok="1"]');
+  if(rightEl && !ok) rightEl.classList.add('ok');
+  const p = it.poem;
+  let extra = ok ? '' : `<div style="margin-top:6px">正确答案：<b>${it.a}</b></div>`;
+  extra += `<div style="margin-top:6px">📖 《${p.t}》全句：${p.lines.map(l=>l).join(' ')}</div>`;
+  finishQ(ok, extra, it);
+}
+function checkK(el, i){
+  if(el.classList.contains('no')||el.classList.contains('ok')) return;
+  const it = quiz.qs[quiz.idx];
+  const ok = el.dataset.ok==='1';
+  document.querySelectorAll('#opts .opt').forEach(o=>o.disabled=true);
+  el.classList.add(ok?'ok':'no');
+  const rightEl = document.querySelector('#opts .opt[data-ok="1"]');
+  if(rightEl && !ok) rightEl.classList.add('ok');
+  finishQ(ok, ok?'':'<div style="margin-top:6px">正确答案：<b>'+it.ca+'</b></div>', it);
+}
+function checkType(){
+  const inp = $('#ans'); if(!inp) return;
+  const v = inp.value.trim();
+  if(!v) return;
+  const ok = v === quiz._curAns;
+  markQ(quiz._curFull.t, ok);
+  if(ok) quiz.right++; else addWrong({t:quiz._curFull.t, typ:'type', q:beforeLine(quiz._curFull, quiz._curAns), ca:quiz._curAns, ua:v});
+  $('#fb').innerHTML = (ok?'✅ 答对了！':'❌ 答错了！') + (ok?'':' 正确答案是「<b>'+quiz._curAns+'</b>」');
+  $('#fb').className = 'feedback '+(ok?'good':'bad');
+  inp.disabled = true;
+  quiz.idx++;
+  setTimeout(nextQ, ok?650:1700);
+}
+function beforeLine(p, ans){
+  for(const l of p.lines){ if(l.includes(ans)) return l; }
+  return p.lines[0]||'';
+}
+function skipQ(){ quiz.idx++; nextQ(); }
+function addWrong(it){
+  const t = it.t;
+  prog.wrong = prog.wrong.filter(w=>w.t!==t || w.typ!==it.typ);
+  prog.wrong.push({t, typ:it.typ, ua:it.ua||'', q:it.q||'', ca:it.ca||''});
+  if(prog.wrong.length>60) prog.wrong = prog.wrong.slice(-60);
+  save();
+}
+function endQuiz(){
+  quiz.done = true;
+  prog.score.played += quiz.idx;
+  prog.score.right += quiz.right;
+  save();
+  $('#qbox').innerHTML = `
+    <div class="card" style="text-align:center">
+      <div style="font-size:2.4rem">${quiz.right/quiz.idx>=0.8?'🏆':'💪'}</div>
+      <div class="q-title" style="font-size:1.25rem;margin:6px 0">本局得分</div>
+      <div style="font-size:1.5rem;color:var(--amber-d);font-weight:800">${quiz.right} / ${quiz.idx}</div>
+      <div style="color:var(--ink-l);font-size:.9rem;margin:6px 0">${quiz.right/quiz.idx>=0.8?'太棒了！继续加油！':'答错的题已存进错题本，去练一练吧～'}</div>
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button class="btn lg teal" style="max-width:220px" onclick="startQuiz()">🔄 再来一轮</button>
+      </div>
+    </div>`;
+}
+
+/* ---------- 错题本 ---------- */
+function renderWrong(){
+  const ws = prog.wrong;
+  const redoAll = ws.length && `<button class="btn lg" onclick="redoWrong()" style="margin-bottom:10px">🔁 重做 ${ws.length} 道错题</button>`;
+  const list = ws.slice().reverse().map((w,i)=>{
+    const p = poemByTitle(w.t);
+    const typName = {seg:'🅰 补名句', k:'🅱 考考点', type:'🅲 默写', skip:'⏭ 跳过'}[w.typ]||'';
+    return `<div class="card">
+      <div class="spread"><span><b>《${w.t}》</b> ${p?p.a:''} ${typName}</span><button class="btn ghost" style="padding:4px 10px;font-size:.8rem" onclick="delWrong(${i})">删除</button></div>
+      <div class="wrong-item">${w.q?('题目：'+w.q):''}${w.ca?' 正确答案：<b>'+w.ca+'</b>':''}</div>
+      ${w.ua?'<div class="wrong-item" style="color:var(--red)">我的答案：'+w.ua+'</div>':''}
+    </div>`;
+  }).join('');
+  $('#view').innerHTML = `
+    <div class="card spread"><span class="q-title">📋 错题本</span><span class="chip">${ws.length} 道</span></div>
+    ${redoAll}
+    ${list || '<div class="card empty">🎉 还没有错题，继续保持！</div>'}
+    ${ws.length?`<button class="btn red" style="margin-top:8px" onclick="clearWrong()">🗑 清空错题本</button>`:''}`;
+}
+function delWrong(i){
+  const idx = prog.wrong.length-1-i; // reverse index
+  prog.wrong.splice(idx,1); save(); renderWrong();
+}
+function clearWrong(){ prog.wrong=[]; save(); renderWrong(); }
+function redoWrong(){
+  const items = prog.wrong.filter(w=>w.typ!=='skip');
+  if(!items.length){ renderWrong(); return; }
+  const qs = items.map(w=>({t:w.t, typ:w.typ==='seg'?'seg':w.typ==='k'?'k':'type', q:'', ca:'', poem:poemByTitle(w.t)})).filter(x=>x.poem);
+  quiz.qs = buildFromItems(qs);
+  if(!quiz.qs.length){ renderWrong(); return; }
+  quiz.idx=0; quiz.right=0; quiz.done=false;
+  location.hash = '#practice';
+  setTimeout(()=>{ $('#qbox').innerHTML=''; nextQ(); }, 40);
+}
+function buildFromItems(items){
+  const qs=[];
+  for(const it of shuff(items)){
+    const p=it.poem;
+    if(it.typ==='seg'){
+      const segs = p.lines.flatMap(l=>l.split(/[，。！？；,\s]+/).filter(x=>x.length>=2));
+      if(segs.length>=2){ qs.push({t:p.t, typ:'seg', q:segs[0], a:segs[1], ca:segs[1], poem:p}); }
+    }else if(it.typ==='k' && p.k){ qs.push({t:p.t, typ:'k', q:'', ca:p.k, poem:p}); }
+    else if(it.typ==='type'){ qs.push({t:p.t, typ:'type', q:'', ca:'', poem:p}); }
+  }
+  return qs;
+}
+/* 兼容 redoWrong：startQuiz 使用 buildQuiz；这里直接复用 nextQ 渲染 */
+/* （重做错题时 quiz.qs 已替换为错题题集） */
+
+/* ---------- 进度 ---------- */
+function renderProgress(){
+  const done = P.filter(p=>pStat(p.t).be).length;
+  const qTotal = Object.values(prog.poems).reduce((s,x)=>s+x.qr+x.qw,0);
+  const qRight = Object.values(prog.poems).reduce((s,x)=>s+x.qr,0);
+  const rows = CATS.map(c=>{
+    const ps = P.filter(p=>p.c===c);
+    const d = ps.filter(p=>pStat(p.t).be).length;
+    return `<div class="spread" style="padding:6px 0;border-bottom:1px dashed var(--line)">
+      <span>${CAT_EMOJI[c]} ${CAT_NAME[c]}</span>
+      <span class="chip ${d===ps.length?'lk':''}">${d}/${ps.length} 首已背</span></div>`;
+  }).join('');
+  $('#view').innerHTML = `
+    <div class="grid2" style="grid-template-columns:repeat(3,1fr)">
+      <div class="card stat"><b>${done}/${P.length}</b><span>已背古诗</span></div>
+      <div class="card stat"><b>${prog.score.played}</b><span>累计答题</span></div>
+      <div class="card stat"><b>${qTotal?Math.round(qRight/qTotal*100):0}%</b><span>答题正确率</span></div>
+    </div>
+    <div class="card"><div class="q-title" style="margin-bottom:4px">📊 各分类背诵情况</div>${rows}</div>
+    <button class="btn red" style="margin-top:8px" onclick="rstAll()">🗑 清除全部学习记录</button>
+    <footer>数据保存在本机浏览器中，换设备或清缓存会丢失。</footer>`;
+}
+function rstAll(){
+  if(!confirm('确定清除全部学习记录吗？')) return;
+  localStorage.removeItem('sicData');
+  location.hash='#home'; location.reload();
+}
+
+/* ---------- 打字默写题在 nextQ 中处理 ---------- */
+</script>
+</body>
+</html>
